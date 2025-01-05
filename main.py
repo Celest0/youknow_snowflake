@@ -416,10 +416,6 @@ def main():
 
         button(username="baurpasj", floating=False, width=221)
 
-        url = "https://docs.google.com/spreadsheets/d/1JDy9md2VZPz4JbYtRPJLs81_3jUK47nx6GYQjgU8qNY/edit?usp=sharing"
-        conn = st.connection("gsheets", type=GSheetsConnection)
-        data = conn.read(spreadsheet=url, usecols=[0, 1])
-        st.dataframe(data)
 
       with st.expander(":studio_microphone: Podcast Sources"):
         st.info(
@@ -447,7 +443,10 @@ def main():
 
 
 
-
+url = "https://docs.google.com/spreadsheets/d/1JDy9md2VZPz4JbYtRPJLs81_3jUK47nx6GYQjgU8qNY/edit?usp=sharing"
+conn = st.connection("gsheets", type=GSheetsConnection)
+data = conn.read(spreadsheet=url, usecols=[0, 1])
+st.dataframe(data)
 
 
 
