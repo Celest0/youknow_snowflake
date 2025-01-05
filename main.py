@@ -437,21 +437,5 @@ def main():
 
 
 
-
-
-
-
-
-
-url = "https://docs.google.com/spreadsheets/d/e/2PACX-1vStdRDJclRHKMrqPeLyz9l848QgyFsXlrA8IT4gVBxka19dtNvFw9Wv-rmY3rN3MTttVaRCjGGe_9iF/pubhtml"
-conn = st.connection("gsheets", type=GSheetsConnection)
-data = conn.read(spreadsheet=url, usecols=[0, 1])
-st.dataframe(data)
-
-
-
-
-
-
 if __name__ == "__main__":
     main()
