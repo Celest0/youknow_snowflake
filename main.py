@@ -443,7 +443,7 @@ def main():
 
 
 
-url = "https://docs.google.com/spreadsheets/d/1E4qw7ETnVaQ_q4Jy5PBosxtOtnztKNiBPjc_nffurZc/edit?gid=0#gid=0"
+url = "https://docs.google.com/spreadsheets/d/e/2PACX-1vStdRDJclRHKMrqPeLyz9l848QgyFsXlrA8IT4gVBxka19dtNvFw9Wv-rmY3rN3MTttVaRCjGGe_9iF/pubhtml"
 conn = st.connection("gsheets", type=GSheetsConnection)
 data = conn.read(spreadsheet=url, usecols=[0, 1])
 st.dataframe(data)
