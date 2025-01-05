@@ -419,7 +419,7 @@ def main():
 
       with st.expander(":studio_microphone: Podcast Sources"):
         st.info(
-            "- The Data Cloud Podcast: https://www.snowflake.com/thedatacloudpodcast \n"
+            "- The Data Cloud Podcast: [link](https://www.snowflake.com/thedatacloudpodcast) \n"
         )
       with st.expander(":tv: Video Sources"):
         st.info(
