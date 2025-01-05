@@ -384,9 +384,9 @@ def main():
 
 
     with st.sidebar:
-      st.header("This is YouKnow Snowflake! ✨")
-      with st.expander(":information_source: About the app"):
-        st.info(
+        st.header("This is YouKnow Snowflake! ✨")
+        with st.expander(":information_source: About the app"):
+            st.info(
             "- Version 0.1.  \n"
             "- Roadmap: Include LLM API Service  \n"
         )
