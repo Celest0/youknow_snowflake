@@ -387,15 +387,14 @@ def main():
       with st.expander(":information_source: About the app"):
         st.info(
             "- Version 0.1.  \n"
-            "- Roadmap: Colbert Retriever  \n"
-            "- Roadmap: LLM service  \n"
+            "- Roadmap: Include LLM API Service  \n"
         )
       #if st.button("Watch the latest on Artificial Intelligence"):
       #  show_video("")
 
       with st.expander(":gear: System Prompt"):
         st.success(
-            "- Blablabal"
+            "- You are a Snowflake expert and your responsibility is to answer questions about Snowflake"
         )
         text_area_container = st.empty()
         sys_prompt = text_area_container.text_area("Instruct your AI", key="text")
@@ -420,18 +419,16 @@ def main():
 
       with st.expander(":studio_microphone: Podcast Sources"):
         st.info(
-            "- Machine Learning Street Talk  \n"
-            "- TBA.  \n"
+            "- The Data Cloud Podcast: https://www.snowflake.com/thedatacloudpodcast \n"
         )
       with st.expander(":tv: Video Sources"):
         st.info(
-            "- Youtube  \n"
-            "- TBA.  \n"
+            "- Youtube - Snowflake Inc: https://www.youtube.com/@SnowflakeInc \n"
+            "- Youtube - Snowflake Developers: https://www.youtube.com/@snowflakedevelopers  \n"
         )
       with st.expander(":newspaper: Text Sources"):
         st.info(
-            "- xxx  \n"
-            "- xxx  \n"
+            "- Snowflake Documentation: https://docs.snowflake.com/  \n"
         )
 
 
