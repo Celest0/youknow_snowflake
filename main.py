@@ -423,7 +423,7 @@ def main():
         )
       with st.expander(":tv: Video Sources"):
         st.info(
-            "- Youtube - Snowflake Inc: https://www.youtube.com/@SnowflakeInc \n"
+            "- [Youtube - Snowflake Inc](https://www.youtube.com/@SnowflakeInc) \n"
             "- Youtube - Snowflake Developers: https://www.youtube.com/@snowflakedevelopers  \n"
         )
       with st.expander(":newspaper: Text Sources"):
