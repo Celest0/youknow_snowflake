@@ -69,9 +69,9 @@ rerank_model = get_rerank_model()
 
 
 example_questions = [
-    "What is artificial intelligence?",
-    "How does a transformer work?",
-    "When will we reach general artificial intelligence?",
+    "What is Snowflake?",
+    "What are Snowflake dynamic tables?",
+    "Tell me about Snowflake Cortex AI?",
 ]
 
 @st.cache_resource
@@ -419,16 +419,16 @@ def main():
 
       with st.expander(":studio_microphone: Podcast Sources"):
         st.info(
-            "- The Data Cloud Podcast: [link](https://www.snowflake.com/thedatacloudpodcast) \n"
+            "- [The Data Cloud Podcast](https://www.snowflake.com/thedatacloudpodcast) \n"
         )
       with st.expander(":tv: Video Sources"):
         st.info(
             "- [Youtube - Snowflake Inc](https://www.youtube.com/@SnowflakeInc) \n"
-            "- Youtube - Snowflake Developers: https://www.youtube.com/@snowflakedevelopers  \n"
+            "- [Youtube - Snowflake Developers](https://www.youtube.com/@snowflakedevelopers)  \n"
         )
       with st.expander(":newspaper: Text Sources"):
         st.info(
-            "- Snowflake Documentation: https://docs.snowflake.com/  \n"
+            "- [Snowflake Documentation](https://docs.snowflake.com/)  \n"
         )
 
 
