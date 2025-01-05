@@ -12,6 +12,7 @@ import sqlite3
 import sqlite_vec
 from typing import List
 import struct
+from streamlit_gsheets import GSheetsConnection
 
 from transformers import pipeline
 
@@ -412,10 +413,13 @@ def main():
           #if prompt:
             #st.write(results[0].metadata)
             #st.write(results[0].page_content)
-      
-      st.write("create video page")
 
-      button(username="baurpasj", floating=False, width=221)
+        button(username="baurpasj", floating=False, width=221)
+
+        url = "https://docs.google.com/spreadsheets/d/1JDy9md2VZPz4JbYtRPJLs81_3jUK47nx6GYQjgU8qNY/edit?usp=sharing"
+        conn = st.connection("gsheets", type=GSheetsConnection)
+        data = conn.read(spreadsheet=url, usecols=[0, 1])
+        st.dataframe(data)
 
       with st.expander(":studio_microphone: Podcast Sources"):
         st.info(
