@@ -298,7 +298,7 @@ def main():
             st.markdown(question)
         # Display assistant response in chat message container
         with st.chat_message("assistant"):
-            with st.container(height=300):
+            with st.container(height=900):
                 response = st.write(final_answer, result)
         # Add assistant response to chat history
         #st.session_state.messages.append({"role": "assistant", "content": response})
@@ -407,7 +407,7 @@ def main():
                 )
         
             with st.expander(":brain: Session History"):
-                with st.container(height=600):
+                with st.container(height=300):
                     if prompt or question:
                         history = st.session_state.messages
                         st.write(history)
