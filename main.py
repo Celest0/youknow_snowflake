@@ -433,10 +433,9 @@ def main():
             )
 
 
-
-with streamlit_analytics:
-    st.write("Hello, World!")
-    st.button("Click me")
+    with streamlit_analytics:
+        st.write("Hello, World!")
+        st.button("Click me")
 
 
 
