@@ -6,5 +6,4 @@ sqlite_vec
 sentence-transformers
 streamlit-extras
 ragatouille
-st-gsheets-connection
 git+https://github.com/huggingface/transformers
