@@ -433,7 +433,7 @@ def main():
             )
 
 
-    with streamlit_analytics:
+    with streamlit_analytics.track():
         st.write("Hello, World!")
         st.button("Click me")
 
