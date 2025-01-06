@@ -2,6 +2,7 @@ numpy
 pandas
 streamlit
 pysqlite3-binary
+streamlit-analytics2
 sqlite_vec
 sentence-transformers
 streamlit-extras
