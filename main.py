@@ -298,7 +298,7 @@ def main():
             st.markdown(question)
         # Display assistant response in chat message container
         with st.chat_message("assistant"):
-            with st.container(height=900):
+            with st.container(height=300):
                 response = st.write(final_answer, result)
         # Add assistant response to chat history
         #st.session_state.messages.append({"role": "assistant", "content": response})
@@ -376,7 +376,7 @@ def main():
                 st.markdown(prompt)
             # Display assistant response in chat message container
             with st.chat_message("assistant"):
-                with st.container(height=300):
+                with st.container(height=900):
                     response = st.write(final_answer)
                     st.video(final_result[0][0][1], start_time=int(float(final_result[0][0][2])))
                 #st.video(result[0][1], start_time=int(result[0][2]))
