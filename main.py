@@ -307,16 +307,16 @@ def main():
         if prompt := st.chat_input("Ask me anything about Snowflake features or updates!"):
         #with st.container(height=300):
         #if prompt := st.chat_input("Ask me anything"):
-            # Initialize chat history
+        # Initialize chat history
 
         # Display chat messages from history on app rerun
-        for message in st.session_state.messages:
-            with st.chat_message(message["role"]):
-            #with st.container(height=300):
-            st.markdown(message["content"])
-            
-            #st.session_state.show_animation = False
-            #st.session_state.messages.append({"role": "user", "content": prompt})
+            for message in st.session_state.messages:
+                with st.chat_message(message["role"]):
+                #with st.container(height=300):
+                    st.markdown(message["content"])
+        
+          #st.session_state.show_animation = False
+          #st.session_state.messages.append({"role": "user", "content": prompt})
 
         # Accept user input
         if prompt:
@@ -373,12 +373,12 @@ def main():
             st.session_state.messages.append({"role": "assistant", "content": final_answer['answer']})
             # Display user message in chat message container
             with st.chat_message("user"):
-            st.markdown(prompt)
+                st.markdown(prompt)
             # Display assistant response in chat message container
             with st.chat_message("assistant"):
-            with st.container(height=300):
-                response = st.write(final_answer)
-                st.video(final_result[0][0][1], start_time=int(float(final_result[0][0][2])))
+                with st.container(height=300):
+                    response = st.write(final_answer)
+                    st.video(final_result[0][0][1], start_time=int(float(final_result[0][0][2])))
                 #st.video(result[0][1], start_time=int(result[0][2]))
                 #response = st.write(final_answer, reranked_result)
                 #st.session_state.messages.append({"role": "assistant", "content": response})
