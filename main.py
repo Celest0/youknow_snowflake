@@ -383,54 +383,54 @@ def main():
                 #response = st.write(final_answer, reranked_result)
                 #st.session_state.messages.append({"role": "assistant", "content": response})
 
-
-    with st.sidebar:
-        st.header("This is YouKnow Snowflake! ✨")
-        with st.expander(":information_source: About the app"):
-            st.info(
-            "- Version 0.1.  \n"
-            "- Roadmap: Include LLM API Service  \n"
-        )
-      #if st.button("Watch the latest on Artificial Intelligence"):
-      #  show_video("")
-
-        with st.expander(":gear: System Prompt"):
-            st.success(
-                "- You are a Snowflake expert and your responsibility is to answer questions about Snowflake"
+    with streamlit_analytics.track():
+        with st.sidebar:
+            st.header("This is YouKnow Snowflake! ✨")
+            with st.expander(":information_source: About the app"):
+                st.info(
+                "- Version 0.1.  \n"
+                "- Roadmap: Include LLM API Service  \n"
             )
-            text_area_container = st.empty()
-            sys_prompt = text_area_container.text_area("Instruct your AI", key="text")
-            sys_prompt_btn = st.button("Customize your AI", on_click=update_sys_prompt)
-            if sys_prompt_btn:
+        #if st.button("Watch the latest on Artificial Intelligence"):
+        #  show_video("")
+
+            with st.expander(":gear: System Prompt"):
                 st.success(
-                    f"Updated system prompt: {sys_prompt}"
-            )
-      
-        with st.expander(":brain: Session History"):
-            with st.container(height=300):
-                if prompt or question:
-                    history = st.session_state.messages
-                    st.write(history)
-            #if prompt:
-                #st.write(results[0].metadata)
-                #st.write(results[0].page_content)
+                    "- You are a Snowflake expert and your responsibility is to answer questions about Snowflake"
+                )
+                text_area_container = st.empty()
+                sys_prompt = text_area_container.text_area("Instruct your AI", key="text")
+                sys_prompt_btn = st.button("Customize your AI", on_click=update_sys_prompt)
+                if sys_prompt_btn:
+                    st.success(
+                        f"Updated system prompt: {sys_prompt}"
+                )
+        
+            with st.expander(":brain: Session History"):
+                with st.container(height=300):
+                    if prompt or question:
+                        history = st.session_state.messages
+                        st.write(history)
+                #if prompt:
+                    #st.write(results[0].metadata)
+                    #st.write(results[0].page_content)
 
-        button(username="baurpasj", floating=False, width=221)
+            button(username="baurpasj", floating=False, width=221)
 
 
-        with st.expander(":studio_microphone: Podcast Sources"):
-            st.info(
-                "- [The Data Cloud Podcast](https://www.snowflake.com/thedatacloudpodcast) \n"
-            )
-        with st.expander(":tv: Video Sources"):
-            st.info(
-                "- [Youtube - Snowflake Inc](https://www.youtube.com/@SnowflakeInc) \n"
-                "- [Youtube - Snowflake Developers](https://www.youtube.com/@snowflakedevelopers)  \n"
-            )
-        with st.expander(":newspaper: Text Sources"):
-            st.info(
-                "- [Snowflake Documentation](https://docs.snowflake.com/)  \n"
-            )
+            with st.expander(":studio_microphone: Podcast Sources"):
+                st.info(
+                    "- [The Data Cloud Podcast](https://www.snowflake.com/thedatacloudpodcast) \n"
+                )
+            with st.expander(":tv: Video Sources"):
+                st.info(
+                    "- [Youtube - Snowflake Inc](https://www.youtube.com/@SnowflakeInc) \n"
+                    "- [Youtube - Snowflake Developers](https://www.youtube.com/@snowflakedevelopers)  \n"
+                )
+            with st.expander(":newspaper: Text Sources"):
+                st.info(
+                    "- [Snowflake Documentation](https://docs.snowflake.com/)  \n"
+                )
 
 
 
