@@ -407,7 +407,7 @@ def main():
                 )
         
             with st.expander(":brain: Session History"):
-                with st.container(height=300):
+                with st.container(height=600):
                     if prompt or question:
                         history = st.session_state.messages
                         st.write(history)
