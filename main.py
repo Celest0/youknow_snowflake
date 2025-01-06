@@ -263,6 +263,10 @@ def main():
 
     intro()
 
+    with streamlit_analytics:
+        st.write("Hello, World!")
+        st.button("Click me")
+
     left, middle, right = st.columns(3)
 
     question = random.choice(example_questions)
@@ -303,85 +307,85 @@ def main():
         # Add assistant response to chat history
         #st.session_state.messages.append({"role": "assistant", "content": response})
     
-    with streamlit_analytics:
-        if prompt := st.chat_input("Ask me anything about Snowflake features or updates!"):
-        #with st.container(height=300):
-        #if prompt := st.chat_input("Ask me anything"):
+    
+    if prompt := st.chat_input("Ask me anything about Snowflake features or updates!"):
+      #with st.container(height=300):
+      #if prompt := st.chat_input("Ask me anything"):
         # Initialize chat history
 
-        # Display chat messages from history on app rerun
-            for message in st.session_state.messages:
-                with st.chat_message(message["role"]):
-                #with st.container(height=300):
-                    st.markdown(message["content"])
+      # Display chat messages from history on app rerun
+      for message in st.session_state.messages:
+        with st.chat_message(message["role"]):
+          #with st.container(height=300):
+          st.markdown(message["content"])
         
           #st.session_state.show_animation = False
           #st.session_state.messages.append({"role": "user", "content": prompt})
 
-        # Accept user input
-        if prompt:
-            question=prompt
-            query=embedding_model.encode(([prompt]))[0]
-            
+      # Accept user input
+      if prompt:
+        question=prompt
+        query=embedding_model.encode(([prompt]))[0]
+        
+        result = db.execute(
+            """
+            SELECT
+                youtube.text,
+                youtube.url,
+                youtube.start
+            FROM youtube_vec
+            left join youtube on youtube.id = youtube_vec.id
+            WHERE embeddings MATCH ?
+            and k = 20
+            ORDER BY distance
+            """,
+            [sqlite_vec.serialize_float32(query)],
+        ).fetchall()
+        
+        #context = " "
+        #for text in result:
+        #  context += text[0]
+        #final_answer = qa_model(question = prompt, context = context)
+        context = []
+        for text in result:
+            #print(text[0])
+            text = text[0]
+            context.append(text)
+        context = list(filter(None, context))
+        reranked_result = rerank_model.rerank(query=question, documents=context, k=3)
+        reranked_context=" "
+        final_result = []
+        for context in reranked_result:
+            reranked_context += context['content']
             result = db.execute(
                 """
                 SELECT
                     youtube.text,
                     youtube.url,
                     youtube.start
-                FROM youtube_vec
-                left join youtube on youtube.id = youtube_vec.id
-                WHERE embeddings MATCH ?
-                and k = 20
-                ORDER BY distance
+                FROM youtube
+                WHERE text LIKE ?
                 """,
-                [sqlite_vec.serialize_float32(query)],
+                [context['content']],
             ).fetchall()
-            
-            #context = " "
-            #for text in result:
-            #  context += text[0]
-            #final_answer = qa_model(question = prompt, context = context)
-            context = []
-            for text in result:
-                #print(text[0])
-                text = text[0]
-                context.append(text)
-            context = list(filter(None, context))
-            reranked_result = rerank_model.rerank(query=question, documents=context, k=3)
-            reranked_context=" "
-            final_result = []
-            for context in reranked_result:
-                reranked_context += context['content']
-                result = db.execute(
-                    """
-                    SELECT
-                        youtube.text,
-                        youtube.url,
-                        youtube.start
-                    FROM youtube
-                    WHERE text LIKE ?
-                    """,
-                    [context['content']],
-                ).fetchall()
-                final_result.append(result)        
-            final_answer = qa_model(question=prompt, context=reranked_context)
+            final_result.append(result)        
+        final_answer = qa_model(question=prompt, context=reranked_context)
 
-            # Add user message to chat history
-            st.session_state.messages.append({"role": "user", "content": prompt})
-            # Add assistant response to chat history
-            st.session_state.messages.append({"role": "assistant", "content": final_answer['answer']})
-            # Display user message in chat message container
-            with st.chat_message("user"):
-                st.markdown(prompt)
-            # Display assistant response in chat message container
-            with st.chat_message("assistant"):
-                with st.container(height=300):
-                    response = st.write(final_answer)
-                    st.video(final_result[0][0][1], start_time=int(float(final_result[0][0][2])))
-                #st.video(result[0][1], start_time=int(result[0][2]))
-                #response = st.write(final_answer, reranked_result)
-                #st.session_state.messages.append({"role": "assistant", "content": response})
+        # Add user message to chat history
+        st.session_state.messages.append({"role": "user", "content": prompt})
+        # Add assistant response to chat history
+        st.session_state.messages.append({"role": "assistant", "content": final_answer['answer']})
+        # Display user message in chat message container
+        with st.chat_message("user"):
+          st.markdown(prompt)
+        # Display assistant response in chat message container
+        with st.chat_message("assistant"):
+          with st.container(height=300):
+            response = st.write(final_answer)
+            st.video(final_result[0][0][1], start_time=int(float(final_result[0][0][2])))
+            #st.video(result[0][1], start_time=int(result[0][2]))
+            #response = st.write(final_answer, reranked_result)
+            #st.session_state.messages.append({"role": "assistant", "content": response})
 
 
     with st.sidebar:
