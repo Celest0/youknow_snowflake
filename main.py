@@ -106,9 +106,6 @@ def main():
         #layout="wide",
         #initial_sidebar_state="collapsed"
     #)
-    with streamlit_analytics:
-        st.write("Hello, World!")
-        st.button("Click me")
     db = get_db()
     st.markdown('<div class="main-content">', unsafe_allow_html=True)
     
@@ -437,7 +434,9 @@ def main():
 
 
 
-
+ with streamlit_analytics:
+    st.write("Hello, World!")
+    st.button("Click me")
 
 
 
