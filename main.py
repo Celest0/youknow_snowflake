@@ -292,9 +292,9 @@ def main():
             context += text[0]
         final_answer = qa_model(question = question, context = context)
         # Add user message to chat history
-        st.session_state.messages.append({"role": "user", "content": question})
+        #st.session_state.messages.append({"role": "user", "content": question})
         # Add assistant response to chat history
-        st.session_state.messages.append({"role": "assistant", "content": final_answer['answer']})
+        #st.session_state.messages.append({"role": "assistant", "content": final_answer['answer']})
         # Display user message in chat message container
         with st.chat_message("user"):
             st.markdown(question)
@@ -372,9 +372,9 @@ def main():
             final_answer = result
 
             # Add user message to chat history
-            st.session_state.messages.append({"role": "user", "content": prompt})
+            #st.session_state.messages.append({"role": "user", "content": prompt})
             # Add assistant response to chat history
-            st.session_state.messages.append({"role": "assistant", "content": final_answer['answer']})
+            #st.session_state.messages.append({"role": "assistant", "content": final_answer['answer']})
             # Display user message in chat message container
             with st.chat_message("user"):
                 st.markdown(prompt)
@@ -382,7 +382,7 @@ def main():
             with st.chat_message("assistant"):
                 with st.container(height=1000):
                     response = st.write(final_answer)
-                    st.video(final_result[0][0][1], start_time=int(float(final_result[0][0][2])))
+                    #st.video(final_result[0][0][1], start_time=int(float(final_result[0][0][2])))
                 #st.video(result[0][1], start_time=int(result[0][2]))
                 #response = st.write(final_answer, reranked_result)
                 #st.session_state.messages.append({"role": "assistant", "content": response})
