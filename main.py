@@ -52,13 +52,13 @@ def get_db():
     return db
 #db = get_db()
 
-@st.cache_resource
-def get_qa_model():
+#@st.cache_resource
+#def get_qa_model():
   # Get embedding model
-  qa_model = pipeline("question-answering")#, model="meta-llama/Llama-3.2-1B")
+  #qa_model = pipeline("question-answering")#, model="meta-llama/Llama-3.2-1B")
   #qa_model = pipeline("question-answering", model='bert-base-cased')#, model="distilbert/distilbert-base-cased-distilled-squad")
-  return qa_model
-qa_model = get_qa_model()
+  #return qa_model
+#qa_model = get_qa_model()
 
 
 #@st.cache_resource
@@ -368,8 +368,8 @@ def main():
             #    ).fetchall()
             #    final_result.append(result)        
             #final_answer = qa_model(question=prompt, context=reranked_context)
-            unranked_context = context
-            final_answer = qa_model(question=prompt, context=unranked_context)
+            #final_answer = qa_model(question=prompt, context=context)
+            final_answer = result
 
             # Add user message to chat history
             st.session_state.messages.append({"role": "user", "content": prompt})
