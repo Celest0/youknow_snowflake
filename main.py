@@ -334,7 +334,7 @@ def main():
                 FROM youtube_vec
                 left join youtube on youtube.id = youtube_vec.id
                 WHERE embeddings MATCH ?
-                and k = 20
+                and k = 5
                 ORDER BY distance
                 """,
                 [sqlite_vec.serialize_float32(query)],
@@ -368,7 +368,8 @@ def main():
             #    ).fetchall()
             #    final_result.append(result)        
             #final_answer = qa_model(question=prompt, context=reranked_context)
-            final_answer = qa_model(question=prompt, context=context)
+            unranked_context = context
+            final_answer = qa_model(question=prompt, context=unranked_context)
 
             # Add user message to chat history
             st.session_state.messages.append({"role": "user", "content": prompt})
