@@ -19,7 +19,7 @@ import streamlit_analytics2 as streamlit_analytics
 from transformers import pipeline
 
 from sentence_transformers import SentenceTransformer
-from ragatouille import RAGPretrainedModel
+#from ragatouille import RAGPretrainedModel
 
 
 
@@ -61,12 +61,12 @@ def get_qa_model():
 qa_model = get_qa_model()
 
 
-@st.cache_resource
-def get_rerank_model():
+#@st.cache_resource
+#def get_rerank_model():
   # Get embedding model
-  rerank_model = RAGPretrainedModel.from_pretrained("colbert-ir/colbertv2.0")
+  #rerank_model = RAGPretrainedModel.from_pretrained("colbert-ir/colbertv2.0")
   #qa_model = pipeline("question-answering", model='distilbert/distilbert-base-cased-distilled-squad')#, model="distilbert/distilbert-base-cased-distilled-squad")
-  return rerank_model
+  #return rerank_model
 #rerank_model = get_rerank_model()
 
 
