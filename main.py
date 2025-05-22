@@ -16,7 +16,7 @@ from typing import List
 import struct
 import streamlit_analytics2 as streamlit_analytics
 
-from transformers import pipeline
+#from transformers import pipeline
 
 from sentence_transformers import SentenceTransformer
 #from ragatouille import RAGPretrainedModel
