@@ -6,5 +6,5 @@ streamlit-analytics2
 sqlite_vec
 sentence-transformers
 streamlit-extras
-ragatouille
+#ragatouille
 git+https://github.com/huggingface/transformers
