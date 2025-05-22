@@ -67,7 +67,7 @@ def get_rerank_model():
   rerank_model = RAGPretrainedModel.from_pretrained("colbert-ir/colbertv2.0")
   #qa_model = pipeline("question-answering", model='distilbert/distilbert-base-cased-distilled-squad')#, model="distilbert/distilbert-base-cased-distilled-squad")
   return rerank_model
-rerank_model = get_rerank_model()
+#rerank_model = get_rerank_model()
 
 
 
@@ -350,24 +350,25 @@ def main():
                 text = text[0]
                 context.append(text)
             context = list(filter(None, context))
-            reranked_result = rerank_model.rerank(query=question, documents=context, k=3)
-            reranked_context=" "
-            final_result = []
-            for context in reranked_result:
-                reranked_context += context['content']
-                result = db.execute(
-                    """
-                    SELECT
-                        youtube.text,
-                        youtube.url,
-                        youtube.start
-                    FROM youtube
-                    WHERE text LIKE ?
-                    """,
-                    [context['content']],
-                ).fetchall()
-                final_result.append(result)        
-            final_answer = qa_model(question=prompt, context=reranked_context)
+            #reranked_result = rerank_model.rerank(query=question, documents=context, k=3)
+            #reranked_context=" "
+            #final_result = []
+            #for context in reranked_result:
+            #    reranked_context += context['content']
+            #    result = db.execute(
+            #        """
+            #        SELECT
+            #            youtube.text,
+            #            youtube.url,
+            #            youtube.start
+            #        FROM youtube
+            #        WHERE text LIKE ?
+            #        """,
+            #        [context['content']],
+            #    ).fetchall()
+            #    final_result.append(result)        
+            #final_answer = qa_model(question=prompt, context=reranked_context)
+            final_answer = qa_model(question=prompt, context=context)
 
             # Add user message to chat history
             st.session_state.messages.append({"role": "user", "content": prompt})
