@@ -328,13 +328,13 @@ def main():
             result = db.execute(
                 """
                 SELECT
-                    youtube.text,
-                    youtube.url,
-                    youtube.start
-                FROM youtube_vec
-                left join youtube on youtube.id = youtube_vec.id
+                  podcasts.id,
+                  podcasts_vec.id,
+                  podcasts.text
+                FROM podcasts_vec
+                left join podcasts on podcasts.id = podcasts_vec.id
                 WHERE embeddings MATCH ?
-                and k = 5
+                and k = 20
                 ORDER BY distance
                 """,
                 [sqlite_vec.serialize_float32(query)],
